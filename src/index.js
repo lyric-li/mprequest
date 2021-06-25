@@ -35,25 +35,20 @@ class MpRequest {
   ) {
     options = Object.assign(this.options, options);
 
-    let newOptions = options;
-    const handlersReq = this.interceptors.request.handlers;
-    while (handlersReq.length) {
-      const { fulfilledFn, rejectedFn } = handlersReq.shift();
+    this.interceptors.request.foreach((fulfilledFn, rejectedFn) => {
       try {
-        newOptions = fulfilledFn(options);
+        options = fulfilledFn(options);
       } catch (error) {
         rejectedFn(error);
-        break;
+        throw error;
       }
-    }
+    });
 
-    let promise = request(url, params, newOptions);
+    let promise = request(url, params, options);
 
-    const handlersRes = this.interceptors.response.handlers;
-    while (handlersRes.length) {
-      const { fulfilledFn, rejectedFn } = handlersRes.shift();
+    this.interceptors.response.foreach((fulfilledFn, rejectedFn) => {
       promise = promise.then(fulfilledFn, rejectedFn);
-    }
+    });
 
     return promise;
   }
