@@ -19,6 +19,15 @@ class MpRequest {
     this.options = Object.assign(this.options, options);
   }
 
+  get(url, params, options) {
+    return this.request(url, params, options);
+  }
+
+  post(url, params, options = {}) {
+    options = Object.assign(options, { method: "POST" });
+    return this.request(url, params, options);
+  }
+
   request(
     url = "",
     params = {},
