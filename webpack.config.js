@@ -1,26 +1,34 @@
+// Generated using webpack-cli https://github.com/webpack/webpack-cli
+
 const path = require("path");
 
-module.exports = {
+const isprod = process.env.NODE_ENV === "production";
+
+const config = {
   entry: {
     mprequest: "./src/index.js",
   },
   output: {
-    filename: "[name].min.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-            plugins: ["@babel/plugin-proposal-object-rest-spread"],
-          },
-        },
+        test: /\.(js|jsx)$/i,
+        loader: "babel-loader",
+        exclude: /node_modules/,
       },
     ],
   },
+};
+
+module.exports = () => {
+  if (isprod) {
+    config.mode = "production";
+    config.output.filename = "[name].min.js";
+  } else {
+    config.mode = "development";
+    config.output.filename = "[name].js";
+  }
+  return config;
 };

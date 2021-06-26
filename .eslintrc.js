@@ -11,6 +11,7 @@ module.exports = {
     "wx": true,
   },
   "rules": {
+    "indent": ["error", 2],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "space-before-function-paren": [2, "never"],

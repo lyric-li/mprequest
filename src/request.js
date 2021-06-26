@@ -22,4 +22,4 @@ function request(
   });
 }
 
-export default request;
+module.exports = request;

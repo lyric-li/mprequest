@@ -1,5 +1,5 @@
-import request from "./request";
-import InterceptorManager from "./interceptor-manager";
+const request = require("./request");
+const InterceptorManager = require("./interceptor-manager");
 
 class MpRequest {
 

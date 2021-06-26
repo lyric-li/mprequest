@@ -22,4 +22,4 @@ class InterceptorManager {
   }
 }
 
-export default InterceptorManager;
+module.exports = InterceptorManager;
