@@ -10,6 +10,10 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
+    library: {
+      name: "mprequest",
+      type: "umd",
+    },
   },
   module: {
     rules: [
