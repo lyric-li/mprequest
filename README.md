@@ -19,7 +19,7 @@ yarn add file:/full/path/mprequest
 
 ```javascript
 import MpRequest from 'mprequest';
-# OR
+// OR
 const MpRequest = require('mprequest');
 ```
 

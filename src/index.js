@@ -20,6 +20,7 @@ class MpRequest {
   }
 
   get(url, params, options) {
+    options = Object.assign(options, { method: "GET" });
     return this.request(url, params, options);
   }
 
