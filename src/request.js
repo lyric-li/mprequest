@@ -8,10 +8,7 @@ function request(
     wx.request({
       url,
       data,
-      header: options.header,
-      method: options.method,
-      dataType: options.dataType,
-      responseType: options.responseType,
+      ...options,
       success: (res) => {
         resolve(res);
       },

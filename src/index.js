@@ -8,6 +8,7 @@ class MpRequest {
     method: "GET",
     dataType: "json",
     responseType: "text",
+    timeout: 60000,
   }
 
   interceptors = {
