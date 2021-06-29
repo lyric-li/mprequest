@@ -50,8 +50,8 @@ mpreq.request('/user', {
 
 为方便起见，请求方法提供了别名
 
-- axios.get(url[, params[, options]])
-- axios.post(url[, params[, options]])
+- mpreq.get(url[, params[, options]])
+- mpreq.post(url[, params[, options]])
 
 
 ### 拦截器
