@@ -7,6 +7,13 @@ class InterceptorManager {
       fulfilledFn,
       rejectedFn,
     });
+    return this.handlers.length - 1;
+  }
+
+  eject(id) {
+    if (this.handlers[id]) {
+      this.handlers[id] = null;
+    }
   }
 
   foreach(fn) {

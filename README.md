@@ -77,3 +77,10 @@ mpreq.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 ```
+
+移除拦截器
+
+```javascript
+const myInterceptor = mpreq.interceptors.request.use(function () {/*...*/});
+mpreq.interceptors.request.eject(myInterceptor);
+```
