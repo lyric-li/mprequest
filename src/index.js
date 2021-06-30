@@ -4,6 +4,7 @@ const InterceptorManager = require("./interceptor-manager");
 class MpRequest {
 
   options = {
+    baseUrl: "",
     header: { "content-type": "application/json" },
     method: "GET",
     dataType: "json",
@@ -46,6 +47,9 @@ class MpRequest {
       }
     });
 
+    if(!(url.indexOf("https") === 0 || url.indexOf("http") === 0)) {
+      url = `${options.baseUrl}${url}`;
+    }
     let promise = request(url, params, options);
 
     this.interceptors.response.foreach((fulfilledFn, rejectedFn) => {

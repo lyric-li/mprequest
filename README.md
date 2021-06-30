@@ -27,7 +27,7 @@ const MpRequest = require('mprequest');
 
 ```javascript
 const mpreq = new MpRequest({
-  method: "POST"
+  baseUrl: "https://xxx.xxx.xxx"
 });
 ```
 
