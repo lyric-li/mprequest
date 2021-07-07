@@ -1,7 +1,10 @@
-const request = require("./request");
+const Request = require("./request");
 const InterceptorManager = require("./interceptor-manager");
+const CancelToken = require("./cancel-token");
 
 class MpRequest {
+
+  req = void 0;
 
   options = {
     baseUrl: "",
@@ -10,14 +13,15 @@ class MpRequest {
     dataType: "json",
     responseType: "text",
     timeout: 60000,
-  }
+  };
 
   interceptors = {
     request: new InterceptorManager(),
     response: new InterceptorManager(),
-  }
+  };
 
   constructor(options) {
+    this.req = new Request();
     this.options = Object.assign(this.options, options);
   }
 
@@ -50,7 +54,8 @@ class MpRequest {
     if(!(url.indexOf("https") === 0 || url.indexOf("http") === 0)) {
       url = `${options.baseUrl}${url}`;
     }
-    let promise = request(url, params, options);
+
+    let promise = this.req.send(url, params, options);
 
     this.interceptors.response.foreach((fulfilledFn, rejectedFn) => {
       promise = promise.then(fulfilledFn, rejectedFn);
@@ -62,3 +67,4 @@ class MpRequest {
 }
 
 module.exports = MpRequest;
+module.exports.CancelToken = CancelToken;

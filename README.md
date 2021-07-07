@@ -84,3 +84,20 @@ mpreq.interceptors.response.use(function (response) {
 const myInterceptor = mpreq.interceptors.request.use(function () {/*...*/});
 mpreq.interceptors.request.eject(myInterceptor);
 ```
+
+### 取消
+
+```javascript
+const { CancelToken } = require('mprequest');
+let cancel;
+
+mpreq.get('/user/12345', {}, {
+  cancelToken: new CancelToken(function executor(c) {
+    // executor 函数接收一个 cancel 函数作为参数
+    cancel = c;
+  })
+});
+
+// cancel the request
+cancel();
+```
