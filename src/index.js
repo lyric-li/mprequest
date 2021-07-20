@@ -1,6 +1,6 @@
-const Request = require("./request");
-const InterceptorManager = require("./interceptor-manager");
-const CancelToken = require("./cancel-token");
+const Request = require("./core/request");
+const InterceptorManager = require("./core/interceptor-manager");
+const CancelToken = require("./core/cancel-token");
 
 class MpRequest {
 
