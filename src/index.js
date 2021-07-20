@@ -25,21 +25,33 @@ class MpRequest {
     this.options = Object.assign(this.options, options);
   }
 
-  get(url, params, options) {
-    options = Object.assign(options, { method: "GET" });
-    return this.request(url, params, options);
-  }
-
-  post(url, params, options = {}) {
-    options = Object.assign(options, { method: "POST" });
-    return this.request(url, params, options);
-  }
-
-  request(
-    url = "",
-    params = {},
+  get(
+    url,
+    data,
     options = {},
   ) {
+    options = Object.assign(options, { 
+      url, 
+      data: data.params, 
+      method: "GET",
+    });
+    return this.request(options);
+  }
+
+  post(
+    url,
+    data,
+    options = {},
+  ) {
+    options = Object.assign(options, { 
+      url,
+      data,
+      method: "POST",
+    });
+    return this.request(options);
+  }
+
+  request(options = {}) {
     options = Object.assign(this.options, options);
 
     this.interceptors.request.foreach((fulfilledFn, rejectedFn) => {
@@ -51,11 +63,12 @@ class MpRequest {
       }
     });
 
+    const { url } = options;
     if(!(url.indexOf("https") === 0 || url.indexOf("http") === 0)) {
-      url = `${options.baseUrl}${url}`;
+      options.url = `${options.baseUrl}${url}`;
     }
 
-    let promise = this.req.send(url, params, options);
+    let promise = this.req.send(options);
 
     this.interceptors.response.foreach((fulfilledFn, rejectedFn) => {
       promise = promise.then(fulfilledFn, rejectedFn);

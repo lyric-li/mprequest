@@ -1,14 +1,8 @@
 class Request {
 
-  send(
-    url = "",
-    data = {},
-    options = {},
-  ) {
+  send(options) {
     return new Promise((resolve, reject) => {
       const task = wx.request({
-        url,
-        data,
         ...options,
         success: (res) => {
           resolve(res);

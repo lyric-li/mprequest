@@ -36,9 +36,13 @@ const mpreq = new MpRequest({
 ### 执行请求
 
 ```javascript
-mpreq.request('/user', {
-  firstName: 'Fred',
-  lastName: 'Flintstone'
+mpreq.request({
+  url: '/user',
+  method: "GET",
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
 })
 .then(function (response) {
   console.log(response);
@@ -50,8 +54,8 @@ mpreq.request('/user', {
 
 为方便起见，请求方法提供了别名
 
-- mpreq.get(url[, params[, options]])
-- mpreq.post(url[, params[, options]])
+- mpreq.get(url[, options]])
+- mpreq.post(url[, data[, options]])
 
 
 ### 拦截器
