@@ -6,7 +6,7 @@
 ## 安装
 
 ```bash
-git clone https://gitee.com/lyric-li/mprequest.git
+git clone https://github.com/lyric-li/mprequest.git
 
 npm install file:/full/path/mprequest -S
 # OR
